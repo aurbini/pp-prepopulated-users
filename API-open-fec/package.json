@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node dist/app.js", 
-    "dev": "ts-node src/app.ts", 
+    "start": "ts-node dist/app.js",
+    "dev": "ts-node src/app.ts",
     "build": "tsc -p ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.13",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21"
+    "@types/node": "^17.0.21",
+    "@types/pg": "^8.6.5"
   }
 }
