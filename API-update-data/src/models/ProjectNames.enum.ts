@@ -14,5 +14,9 @@ export enum ProjectNames {
     StateLeg = 'StateLeg',
     StateLegCOGA = 'StateLegCOGA',
     TravisRes = 'TravisRes',
-    StateHouseRes = 'StateHouseRes'
+    StateHouseRes = 'StateHouseRes',
+    BrainRob = 'BrianRob',
+    AlList = 'AlList',
+    FrankieRes = 'FrankieRes',
+    Danyela = 'Danyela'
 }

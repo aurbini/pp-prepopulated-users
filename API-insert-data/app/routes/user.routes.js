@@ -25,6 +25,8 @@ module.exports = (app) => {
 
   router.post('/createCampaignExtra', User.createCampaignExtra);
 
+  router.post('/findEmail', uploadRecords, User.findEmail);
+
   router.get('/', User.findAll);
   // Retrieve all published User
   router.get('/published', User.findAllPublished);

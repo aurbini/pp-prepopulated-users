@@ -1,22 +1,34 @@
 module.exports = {
-  HOST: '3.19.168.166',
-  // PORT: '1463',
-  USER: 'sa',
-  PASSWORD: 'P@rent4P@rty1',
-  DB: 'DonorNew',
-  dialect: 'mssql',
+  // HOST: '3.19.168.166',
+  // // PORT: '1463',
+  // USER: 'sa',
+  // PASSWORD: 'P@rent4P@rty1',
+  // DB: 'DonorNew',
+  // dialect: 'mssql',
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000,
   },
+  HOST: 'localhost',
+  PORT: '1463',
+  USER: 'sa',
+  PASSWORD: 'Password1$',
+  DB: 'Donor',
+  dialect: 'mssql'
 };
 
 //LIVE SERVER,
 // Server Name: 3.19.168.166
 // Username: sa
 // Password: P@rent4P@rty1
+ // HOST: '3.19.168.166',
+  // // PORT: '1463',
+  // USER: 'sa',
+  // PASSWORD: 'P@rent4P@rty1',
+  // DB: 'DonorNew',
+  // dialect: 'mssql',
 
 //LOCALHOST
 // HOST: 'localhost',
@@ -24,4 +36,4 @@ module.exports = {
 // USER: 'sa',
 // PASSWORD: 'Password1$',
 // DB: 'Donor',
-// dialect: 'mssql',
+// dialect: 'mssql'

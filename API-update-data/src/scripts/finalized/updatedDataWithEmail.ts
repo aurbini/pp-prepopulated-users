@@ -14,9 +14,18 @@ const ri = xlsx.readFile('../../../dist/RiRes-updated.xlsx');
 const stateLeg = xlsx.readFile('../../../dist/StateLeg-updated.xlsx');
 const coLeg = xlsx.readFile('../../../dist/StateLegCOGA-updated.xlsx');
 const travis = xlsx.readFile('../../../dist/TravisRes-updated.xlsx');
+const aiList = xlsx.readFile('../../../dist/AlList-updated.xlsx');
+const brianRob = xlsx.readFile('../../../dist/BrianRob-updated.xlsx');
+const Danyela = xlsx.readFile('../../../dist/Danyela-updated.xlsx');
+const frankie = xlsx.readFile('../../../dist/FrankieRes-updated.xlsx');
 const stateHouse = xlsx.readFile('../../../dist/StateHouseRes-updated.xlsx');
 
+
 var files = [
+    // aiList,
+    // brianRob,
+    // Danyela,
+    // frankie,
     aya,
     ayaCal,
     calState,
@@ -48,10 +57,8 @@ files.forEach((file, index) => {
                 record.Email == record.TrEmail;
             }
             if (!!record.Email) {
-                console.log(emailMap[record.Email])
                 if (emailMap[record.Email]) {
                     emailCopyCounter++;
-                    console.log('return false')
                 } else {
                     newEmailCounter++
                     // if (record.FirstName.trim() == "Matt" && record.LastName == "Lockett") {
@@ -68,8 +75,7 @@ files.forEach((file, index) => {
     });
 });
 // console.log(emailMap)
-console.log(emailCopyCounter)
-console.log(newEmailCounter)
+console.log(updatedRecord.length)
 // console.log(updatedRecord.slice(0, 20));
 
 //-----------JSON DATA-CREATION---------------//

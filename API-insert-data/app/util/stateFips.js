@@ -57,10 +57,15 @@ const stateFipsMap = {
 }
 
 const findFipsNum = (state) => {
-    if (state.length == 2) {
-        return findByPostalCode(state)
+    if (!!state) {
+
+        if (state.length == 2) {
+            return findByPostalCode(state)
+        } else {
+            return stateFipsMap[state]
+        }
     } else {
-        return stateFipsMap[state]
+        return null;
     }
 }
 console.log(findFipsNum('Alabama'));

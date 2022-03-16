@@ -20,8 +20,9 @@ import { countCommas, splitAddressMeshed, splitOneCommaAddress, splitTwoCommaAdd
 import { findStateName } from '../util/findStateName';
 import { StateHouseRes } from '../scripts/stateHouse-res';
 import { stateHouseWsInterface } from './wsModels/stateHouse.model';
+import { StandardInterface } from './wsModels/standard.model';
 
-type wsModels = AyaCalWsInterface | AyaResWsModel | CalStateWsInterface | CrisTravisWsInterface | DelgadoWsInterface | CristinaWsInterface | EmilyStateWsInterface | JacobResWsInterface | RiResWsInterface | StateLegWsInterface | stateLegCOGAWsInterface | TravisWsInterface | stateHouseWsInterface
+type wsModels = StandardInterface | AyaCalWsInterface | AyaResWsModel | CalStateWsInterface | CrisTravisWsInterface | DelgadoWsInterface | CristinaWsInterface | EmilyStateWsInterface | JacobResWsInterface | RiResWsInterface | StateLegWsInterface | stateLegCOGAWsInterface | TravisWsInterface | stateHouseWsInterface
 
 type nameType = 'treasurer' | 'user'
 

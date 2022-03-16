@@ -19,4 +19,8 @@ var ProjectNames;
     ProjectNames["StateLegCOGA"] = "StateLegCOGA";
     ProjectNames["TravisRes"] = "TravisRes";
     ProjectNames["StateHouseRes"] = "StateHouseRes";
+    ProjectNames["BrainRob"] = "BrianRob";
+    ProjectNames["AlList"] = "AlList";
+    ProjectNames["FrankieRes"] = "FrankieRes";
+    ProjectNames["Danyela"] = "Danyela";
 })(ProjectNames = exports.ProjectNames || (exports.ProjectNames = {}));
