@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import * as Search from '../../controller/search'
+import SearchDataController from '../../controller/search';
 
 const router = Router();
+const searchDataController = new SearchDataController();
 
 router.route('/')
-    .get(Search.findCand);
+    .get(searchDataController.getCandidates)
 
 export default router; 
