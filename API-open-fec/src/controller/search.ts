@@ -12,12 +12,9 @@ class SearchDataController {
 
     public async getCandidates(req: Request, res: Response) {
         try {
-            console.log('hello')
-            console.log(fec_url + url_param + process.env.API_KEY)
-            const candidates = await axios.get(fec_url + url_param + process.env.API_KEY);
-            console.log('fetch')
-            console.log(candidates)
-            res.send({ candidates });
+            const result = await axios.get(fec_url + url_param + process.env.API_KEY);
+            console.log(result.data)
+            res.send(result.data)
         } catch (error) {
             console.log(error)
             res.status(400).send(error);

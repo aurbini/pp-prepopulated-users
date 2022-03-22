@@ -31,12 +31,9 @@ const url_param = '/candidates/?page=1&sort_nulls_last=false&sort_hide_null=fals
 class SearchDataController {
     async getCandidates(req, res) {
         try {
-            console.log('hello');
-            console.log(url_1.fec_url + url_param + process.env.API_KEY);
-            const candidates = await axios_1.default.get(url_1.fec_url + url_param + process.env.API_KEY);
-            console.log('fetch');
-            console.log(candidates);
-            res.send({ candidates });
+            const result = await axios_1.default.get(url_1.fec_url + url_param + process.env.API_KEY);
+            console.log(result.data);
+            res.send(result.data);
         }
         catch (error) {
             console.log(error);

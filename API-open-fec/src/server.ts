@@ -36,6 +36,6 @@ class Server {
             }).on('error', (err: Object) => reject(err));
         });
     }
-}
+} 
 
 export default Server;
