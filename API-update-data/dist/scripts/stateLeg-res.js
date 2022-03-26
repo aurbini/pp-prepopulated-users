@@ -18,8 +18,8 @@ class StateLegRes extends baseFileReader_model_1.BaseFileReader {
             }
             else {
                 this.user.Email = record['Contact info'];
-                this.user.FirstName = splitName_1.splitName(record['Name']).firstName;
-                this.user.LastName = splitName_1.splitName(record['Name']).lastName;
+                this.user.FirstName = (0, splitName_1.splitName)(record['Name']).firstName;
+                this.user.LastName = (0, splitName_1.splitName)(record['Name']).lastName;
             }
             if (wsName == 'Utah') {
                 this.splitAddress(record.Address, false, wsName, fn);

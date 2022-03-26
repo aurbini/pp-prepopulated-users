@@ -11,14 +11,14 @@ class JacobRes extends baseFileReader_model_1.BaseFileReader {
     }
     filterRecords(record, wsName, projectName) {
         if (!!record.NAME) {
-            this.user.FirstName = splitName_1.splitName(record.NAME).firstName;
-            this.user.LastName = splitName_1.splitName(record.NAME).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(record.NAME).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(record.NAME).lastName;
             if (!!record.TREASURER) {
-                this.treasurer.TrFirstName = splitName_1.splitName(record.TREASURER).firstName;
-                this.treasurer.TrLastName = splitName_1.splitName(record.TREASURER).lastName;
+                this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.TREASURER).firstName;
+                this.treasurer.TrLastName = (0, splitName_1.splitName)(record.TREASURER).lastName;
             }
             if (!!record.ADDRESS) {
-                const address = splitAddress_1.splitOneCommaAddress(record.ADDRESS, wsName);
+                const address = (0, splitAddress_1.splitOneCommaAddress)(record.ADDRESS, wsName);
                 this.treasurer.Address = address.address;
                 this.treasurer.Zipcode = address.zipcode;
                 this.treasurer.StateName = address.state;

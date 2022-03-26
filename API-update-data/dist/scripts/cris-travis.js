@@ -11,23 +11,23 @@ class CrisTravis extends baseFileReader_model_1.BaseFileReader {
     filterRecords(record, wsName, fn) {
         if (!record.Politician || wsName == 'MA')
             return;
-        this.user.FirstName = splitName_1.splitName(record.Politician).firstName;
-        this.user.LastName = splitName_1.splitName(record.Politician).lastName;
+        this.user.FirstName = (0, splitName_1.splitName)(record.Politician).firstName;
+        this.user.LastName = (0, splitName_1.splitName)(record.Politician).lastName;
         if (wsName != 'WI') {
-            this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
         }
         else {
-            this.treasurer.TrFirstName = splitName_1.splitName(record['Treasurer ']).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record['Treasurer ']).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record['Treasurer ']).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record['Treasurer ']).lastName;
         }
         this.user.Phone = record.Phone;
         this.user.Email = record.Email;
         if (record.Email)
             this.user.Email;
         if (!!record.Treasurer) {
-            this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
         }
         if (record.Address) {
             this.splitAddress(record.Address, false, wsName, fn);

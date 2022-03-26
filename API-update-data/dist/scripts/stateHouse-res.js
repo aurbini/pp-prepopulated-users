@@ -14,11 +14,11 @@ class StateHouseRes extends baseFileReader_model_1.BaseFileReader {
         if (wsName !== 'Missouri' && wsName !== 'Maryland' && wsName !== 'Virginia') {
             if (!record['Name House'])
                 return;
-            this.user.FirstName = splitMiddleName_1.splitMiddleName(record['Name House'].trim()).firstName;
-            this.user.LastName = splitMiddleName_1.splitMiddleName(record['Name House'].trim()).lastName;
+            this.user.FirstName = (0, splitMiddleName_1.splitMiddleName)(record['Name House'].trim()).firstName;
+            this.user.LastName = (0, splitMiddleName_1.splitMiddleName)(record['Name House'].trim()).lastName;
             if (!!record['Campaign Treasurer']) {
-                this.treasurer.TrFirstName = splitMiddleName_1.splitMiddleName(record['Campaign Treasurer']).firstName;
-                this.treasurer.TrLastName = splitMiddleName_1.splitMiddleName(record['Campaign Treasurer']).lastName;
+                this.treasurer.TrFirstName = (0, splitMiddleName_1.splitMiddleName)(record['Campaign Treasurer']).firstName;
+                this.treasurer.TrLastName = (0, splitMiddleName_1.splitMiddleName)(record['Campaign Treasurer']).lastName;
             }
             this.user.Email = record['Contact info House'];
         }

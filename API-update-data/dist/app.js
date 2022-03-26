@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const ProjectNames_enum_1 = require("./models/ProjectNames.enum");
+const candNew_1 = require("./scripts/candNew");
 // const ayaRes = new AyaRes(ProjectNames.AyaRes);
 // const ayaCalRes = new AyaCalRes(ProjectNames.AyaAndCal)
 // const calRes = new CalStateRes(ProjectNames.CalStateRes)
@@ -8,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // const delgadoRes = new DelgadoRes(ProjectNames.DelgadoStRes)
 // const emilyStRes = new EmilyStRes(ProjectNames.EmilyState);
 // const stateHouseRes = new StateHouseRes(ProjectNames.StateHouseRes);
+const candNew = new candNew_1.candNewRes(ProjectNames_enum_1.ProjectNames.CandNew);
 // const jacobRes = new JacobRes(ProjectNames.JacobRes);
 // const riRes = new RiRes(ProjectNames.RiRes);
 // const stateLeg = new StateLegRes(ProjectNames.StateLeg);

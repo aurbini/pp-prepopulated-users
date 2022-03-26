@@ -13,23 +13,23 @@ class AyaCalRes extends baseFileReader_model_1.BaseFileReader {
     }
     filterRecords(record, wsName) {
         if (!!record['Senators'] && !!record['Treasurer']) {
-            this.user.FirstName = splitName_1.splitName(record.Senators).firstName;
-            this.user.LastName = splitName_1.splitName(record.Senators).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(record.Senators).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(record.Senators).lastName;
             if (!!record.Contact) {
-                this.user.Email = splitPhoneEmail_1.splitPhoneEmail(record.Contact).email;
-                this.user.Phone = splitPhoneEmail_1.splitPhoneEmail(record.Contact).phone;
+                this.user.Email = (0, splitPhoneEmail_1.splitPhoneEmail)(record.Contact).email;
+                this.user.Phone = (0, splitPhoneEmail_1.splitPhoneEmail)(record.Contact).phone;
             }
             if (record.Treasurer.includes(',')) {
-                record.Treasurer = reverseName_1.reverseName(record.Treasurer);
+                record.Treasurer = (0, reverseName_1.reverseName)(record.Treasurer);
             }
-            this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
             if (!!record['Treasurer info']) {
-                this.user.Email = splitPhoneEmail_1.splitPhoneEmail(record['Treasurer info']).email;
-                this.user.Phone = splitPhoneEmail_1.splitPhoneEmail(record['Treasurer info']).phone;
+                this.user.Email = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Treasurer info']).email;
+                this.user.Phone = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Treasurer info']).phone;
             }
-            this.user.State = findStateName_1.findStateName(wsName);
-            this.treasurer.StateName = findStateName_1.findStateName(wsName);
+            this.user.State = (0, findStateName_1.findStateName)(wsName);
+            this.treasurer.StateName = (0, findStateName_1.findStateName)(wsName);
             this.user.OrganizationTypeID = 71;
             this.newData.push(Object.assign(Object.assign({}, this.user), this.treasurer));
         }

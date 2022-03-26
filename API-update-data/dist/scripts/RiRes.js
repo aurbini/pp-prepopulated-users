@@ -12,15 +12,15 @@ class RiRes extends baseFileReader_model_1.BaseFileReader {
     filterRecords(record, wsName) {
         if (!!record.Senators && !!record['Contact']) {
             const candContactSplit = [record['Contact'].slice(0, 14), record['Contact'].slice(14)];
-            this.user.FirstName = splitName_1.splitName(record.Senators).firstName;
-            this.user.LastName = splitName_1.splitName(record.Senators).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(record.Senators).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(record.Senators).lastName;
             this.user.Phone = candContactSplit[0].trim();
             this.user.Email = candContactSplit[1].trim();
             this.treasurer.TrFirstName = this.user.FirstName;
             this.treasurer.TrLastName = this.user.LastName;
             this.treasurer.TrEmail = this.user.Email;
             this.treasurer.TrPhone = this.user.Phone;
-            this.treasurer.StateName = findStateName_1.findStateName(wsName);
+            this.treasurer.StateName = (0, findStateName_1.findStateName)(wsName);
             this.user.OrganizationLevelID = 71;
             // console.log(this.user, this.treasurer)
             this.newData.push(Object.assign(Object.assign({}, this.user), this.treasurer));

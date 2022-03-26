@@ -16,15 +16,15 @@ class CalStateRes extends baseFileReader_model_1.BaseFileReader {
         name.pop();
         name.pop();
         const treas = record['Committee Treasurer info'];
-        this.user.FirstName = splitName_1.splitName(name.join(' ')).firstName;
-        this.user.LastName = splitName_1.splitName(name.join(' ')).lastName;
-        this.user.State = findStateName_1.findStateName(wsName.trim());
-        this.treasurer.StateName = findStateName_1.findStateName(wsName.trim());
+        this.user.FirstName = (0, splitName_1.splitName)(name.join(' ')).firstName;
+        this.user.LastName = (0, splitName_1.splitName)(name.join(' ')).lastName;
+        this.user.State = (0, findStateName_1.findStateName)(wsName.trim());
+        this.treasurer.StateName = (0, findStateName_1.findStateName)(wsName.trim());
         // console.log(wsName)
         if (!!record['Contact info'] == false) {
             return;
         }
-        const commas = splitAddress_1.countCommas(record['Contact info']);
+        const commas = (0, splitAddress_1.countCommas)(record['Contact info']);
         if (wsName == 'MN' && commas > 1 && !record['Contact info'].includes('cell')) {
             const infoToArray = record['Contact info'].split(',');
             // console.log(infoToArray)
@@ -34,8 +34,8 @@ class CalStateRes extends baseFileReader_model_1.BaseFileReader {
                 this.user.Email = infoToArray[1].trim().split('/')[0];
         }
         else if (wsName !== 'MN') {
-            this.user.Email = splitPhoneEmail_1.splitPhoneEmail(record['Contact info']).email;
-            this.user.Phone = splitPhoneEmail_1.splitPhoneEmail(record['Contact info']).phone;
+            this.user.Email = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Contact info']).email;
+            this.user.Phone = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Contact info']).phone;
         }
         // if (wsName == 'MN') console.log(this.user)
         if (wsName == 'CA') {
@@ -53,23 +53,23 @@ class CalStateRes extends baseFileReader_model_1.BaseFileReader {
         }
         if ((wsName == "WI" || wsName == "MN") && !!treas) {
             const phoneIndex = treas.indexOf('(');
-            this.treasurer.TrFirstName = splitName_1.splitName(treas.slice(0, phoneIndex)).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(treas.slice(0, phoneIndex)).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(treas.slice(0, phoneIndex)).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(treas.slice(0, phoneIndex)).lastName;
             this.treasurer.TrPhone = treas.slice(phoneIndex, phoneIndex + 15);
             if (wsName !== 'WI')
                 this.treasurer.TrEmail = treas.slice(phoneIndex + 15);
         }
         if (wsName == 'AZ') {
-            this.treasurer.TrFirstName = splitName_1.splitName(treas).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(treas).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(treas).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(treas).lastName;
         }
         if ((wsName == 'CA')) {
             this.treasurer.TrPhone = treas;
         }
         else if ((wsName == 'AK' || wsName == 'LA') && !!treas) {
             const phoneIndex = treas.indexOf('-') - 3;
-            this.treasurer.TrFirstName = splitName_1.splitName(treas.slice(0, phoneIndex)).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(treas.slice(0, phoneIndex)).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(treas.slice(0, phoneIndex)).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(treas.slice(0, phoneIndex)).lastName;
             this.treasurer.TrPhone = treas.slice(phoneIndex, phoneIndex + 15);
             this.treasurer.TrEmail = treas.slice(phoneIndex + 15);
         }

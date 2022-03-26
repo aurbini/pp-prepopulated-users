@@ -18,11 +18,13 @@ var brianRob = xlsx.readFile('../../../dist/BrianRob-updated.xlsx');
 var Danyela = xlsx.readFile('../../../dist/Danyela-updated.xlsx');
 var frankie = xlsx.readFile('../../../dist/FrankieRes-updated.xlsx');
 var stateHouse = xlsx.readFile('../../../dist/StateHouseRes-updated.xlsx');
+var candNew = xlsx.readFile('../../../dist/CandNew-updated.xlsx');
 var files = [
-    // aiList,
-    // brianRob,
-    // Danyela,
-    // frankie,
+    candNew,
+    aiList,
+    brianRob,
+    Danyela,
+    frankie,
     aya,
     ayaCal,
     calState,
@@ -43,38 +45,34 @@ var newEmailCounter = 0;
 var updatedRecord = [];
 var afterMattRecords = [];
 files.forEach(function (file, index) {
-    var mattLocketIndex = +Infinity;
     var ws = file.Sheets['New Data'];
     var wsJson = xlsx.utils.sheet_to_json(ws);
     wsJson.map(function (record, index) {
-        if (record.FirstName && record.LastName) {
-            if (!record.Email && record.TrEmail) {
-                record.Email == record.TrEmail;
-            }
-            if (!!record.Email) {
-                if (emailMap[record.Email]) {
+        var _a;
+        if (!record.Email && record.TrEmail) {
+            record.Email == record.TrEmail;
+        }
+        if (record.FirstName &&
+            record.LastName &&
+            !((_a = record.Email) === null || _a === void 0 ? void 0 : _a.includes('http')) &&
+            !!record.Email) {
+            if (record.Email.includes('@')) {
+                if (emailMap[record.Email.trim()]) {
                     emailCopyCounter++;
                 }
                 else {
-                    newEmailCounter++;
-                    // if (record.FirstName.trim() == "Matt" && record.LastName == "Lockett") {
-                    //     mattLocketIndex = index;
-                    // }
-                    if (index > mattLocketIndex)
-                        afterMattRecords.push(record);
                     updatedRecord.push(record);
                 }
             }
-            emailMap[record.Email] = true;
+            emailMap[record.Email.trim()] = true;
         }
     });
 });
-// console.log(emailMap)
-console.log(updatedRecord.length);
+console.log({ emailCopyCounter: emailCopyCounter });
+console.log({ updated: updatedRecord.length });
 // console.log(updatedRecord.slice(0, 20));
 //-----------JSON DATA-CREATION---------------//
 var updatedJSON = JSON.stringify(updatedRecord);
-// const updatedJSONAfterMatt = JSON.stringify(afterMattRecords);
 //----------WRITE JSON FILE ---------------//
 fs.writeFile('./newRecords.json', updatedJSON, function (err) {
     if (err) {
@@ -84,45 +82,8 @@ fs.writeFile('./newRecords.json', updatedJSON, function (err) {
         console.log('Successfully wrote file');
     }
 });
-// fs.writeFile('./newRecordsAfterMatt.json', updatedJSON, (err: any) => {
-//     if (err) {
-//         console.log('Error writing file', err);
-//     } else {
-//         console.log('Successfully wrote file');
-//     }
-// });
-// const newWBAfterMatt = xlsx.utils.book_new();
-// const newWSAfterMatt = xlsx.utils.json_to_sheet(afterMattRecords);
-// xlsx.utils.book_append_sheet(newWBAfterMatt, newWSAfterMatt, 'New Data');
-// xlsx.writeFile(newWBAfterMatt, 'DataUpAfterMatt.xlsx');
-//---------------CSV FILE CREATION----------//
-// const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-// const csvWriter = createCsvWriter({
-//   path: './updatedRecord.csv',
-//   header: [
-//     'candFirstName',
-//     'candLastName',
-//     'candPhone',
-//     'candEmail',
-//     'CandAddress',
-//     'tFirstName',
-//     'tLastName',
-//     'tEmail',
-//     'tPhone',
-//     'tAddress',
-//     'commNumber',
-//   ].map((item) => ({ id: item, title: item })),
-// });
-// async function main() {
-//   try {
-//     await csvWriter.writeRecords(updatedRecord);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-// main();
 //-----------EXCEL DATA CREATION--------------//
 var newWB = xlsx.utils.book_new();
 var newWS = xlsx.utils.json_to_sheet(updatedRecord);
 xlsx.utils.book_append_sheet(newWB, newWS, 'New Data');
-xlsx.writeFile(newWB, 'DataUpWithEmail.xlsx');
+xlsx.writeFile(newWB, 'newCandidates.xlsx');

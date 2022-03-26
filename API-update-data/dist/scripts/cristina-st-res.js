@@ -11,8 +11,8 @@ class CristinaStRes extends baseFileReader_model_1.BaseFileReader {
     }
     filterRecords(record, wsName, fn) {
         if (!record.Name.includes(',')) {
-            this.user.FirstName = splitName_1.splitName(record.Name).firstName;
-            this.user.LastName = splitName_1.splitName(record.Name).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(record.Name).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(record.Name).lastName;
         }
         else {
             this.user.FirstName = record.Name.split(' ')[1];
@@ -27,8 +27,8 @@ class CristinaStRes extends baseFileReader_model_1.BaseFileReader {
             this.splitAddress(record.Address, false, wsName, fn);
         }
         else {
-            this.user.State = findStateName_1.findStateName(wsName);
-            this.treasurer.StateName = findStateName_1.findStateName(wsName);
+            this.user.State = (0, findStateName_1.findStateName)(wsName);
+            this.treasurer.StateName = (0, findStateName_1.findStateName)(wsName);
         }
         if (!!record.Treasurer) {
             if (wsName == 'CO') {
@@ -41,8 +41,8 @@ class CristinaStRes extends baseFileReader_model_1.BaseFileReader {
                 this.treasurer.TrLastName = this.user.LastName;
             }
             else {
-                this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-                this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+                this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+                this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
             }
         }
         this.user.OrganizationTypeID = 71;

@@ -7,23 +7,23 @@ const {
   CampaignCommitteeDetail,
 } = require('../models');
 const saltRounds = 10;
-const sequelize = require('sequelize')
-const db = require('../models')
+const sequelize = require('sequelize');
+const db = require('../models');
 let crypto = require('crypto');
-const { findFipsNum } = require('../util/stateFips')
+const { findFipsNum } = require('../util/stateFips');
 
-//TEST CONNECTION 
+//TEST CONNECTION
 exports.findUsers = async (req, res) => {
   User.findAll()
     .then((data) => {
       res.send({ users: data });
       // console.log(data);
-      console.log(data)
+      console.log(data);
     })
     .catch((err) => {
-      console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 // Create and Save a new Use
 exports.createUsers = async (req, res) => {
   const records = req.file;
@@ -68,28 +68,25 @@ exports.createUsers = async (req, res) => {
       try {
         // .query(`INSERT users(FirstName, LastName, Email, PasswordSalt, PasswordHash, DateOfBirth) VALUES (${user.FirstName}, ${user.LastName}, ${user.Email}, CONVERT(VARBINARY(MAX),${user.PasswordSalt}), CONVERT(VARBINARY(MAX),${user.PasswordHash}), ${user.DateOfBirth} )`)
         // CONVERT(VARBINARY(MAX),FileBytes));
-        User.create(user)
+        await User.create(user)
           .then((data) => {
             // res.send({ message: 'New User Created' });
           })
           .catch((err) => {
-            console.log(err)
+            console.log(err);
             throw new Error();
-            res.status(500).send({
-              message:
-                err.message ||
-                'Some error occurred while creating the User.',
-            });
           });
       } catch (err) {
         console.log(err);
+        res.send({ message: err });
       }
     }
-  }
-  catch (err) {
+    res.send({ message: 'Users Created' });
+  } catch (err) {
     console.log('Error parsing JSON string:', err);
+    res.send({ message: err });
   }
-}
+};
 //------------FETCH USER ID------------/////
 
 //----------------INSERT INTO CAMPAIGN INFO-------------//
@@ -101,10 +98,10 @@ exports.createUsers = async (req, res) => {
 
 //IF STATE
 //OFFICE LEVEL ID 2, OFFICE TYPE 12, PARTY ID 5, STATE ID 1,
-var campaignInfoArray = []
-var userArray = []
-var findUser = []
-var noUser = []
+var campaignInfoArray = [];
+var userArray = [];
+var findUser = [];
+var noUser = [];
 let count = 0;
 
 exports.createCampaign = async (req, res) => {
@@ -120,7 +117,7 @@ exports.createCampaign = async (req, res) => {
     const parsedRecords = JSON.parse(bufferString);
 
     for (let i = 0; i < parsedRecords.length; i++) {
-      count++
+      count++;
       const record = parsedRecords[i];
       try {
         const user = await User.findOne({
@@ -133,28 +130,28 @@ exports.createCampaign = async (req, res) => {
             UserId: user.id,
             OfficeLevelId: 2,
             OfficeTypeId: record.OrganizationLevelID | 71,
-            // campaignID: 
+            // campaignID:
             PartyId: 5,
             StateId: findFipsNum(record.State) | 1,
             UpdatedOn: new Date(),
             CreatedOn: new Date(),
             IsVisible: true,
             IsApproved: true,
-            CountyId: 0
+            CountyId: 0,
           };
-          userArray.push(user.data)
+          userArray.push(user.data);
           try {
             CampaignInfo.create(campaignInfo)
               .then((data) => {
-                campaignInfoArray.push(data)
+                campaignInfoArray.push(data);
                 CampaignInfo.findOne({
                   where: {
-                    UserId: data.dataValues.UserId
-                  }
+                    UserId: data.dataValues.UserId,
+                  },
                 })
                   // .catch((err) => console.log(err))
-                  .then(data => {
-                    findUser.push(user.data)
+                  .then((data) => {
+                    findUser.push(user.data);
                     // console.log(data)
                     // res.send({ message: "new campaign info" })
                     const campaignComContactInfo = {
@@ -167,8 +164,8 @@ exports.createCampaign = async (req, res) => {
                       StateId: data.StateId,
                       CountyId: 0,
                       CreatedOn: new Date(),
-                      UpdatedOn: new Date()
-                    }
+                      UpdatedOn: new Date(),
+                    };
                     const campaignComDetail = {
                       CampaignId: data.id,
                       CommitteeName: '',
@@ -183,8 +180,8 @@ exports.createCampaign = async (req, res) => {
                       CountyId: 0,
                       CountyName: '',
                       CreatedOn: new Date(),
-                      UpdatedOn: new Date()
-                    }
+                      UpdatedOn: new Date(),
+                    };
                     const campaignComTr = {
                       CampaignId: data.id,
                       FirstName: record.TrFirstName,
@@ -199,26 +196,27 @@ exports.createCampaign = async (req, res) => {
                       CountyName: '',
                       CreatedOn: new Date(),
                       UpdatedOn: new Date(),
-                    }
+                    };
                     CampaignCommitteeContactInfo.create(campaignComContactInfo)
-                      .then(data => {
-                      }
+                      .then(
+                        (data) => {}
                         // console.log('contact DONE')
                       )
                       .catch((err) => console.log(err));
                     CampaignCommitteeDetail.create(campaignComDetail)
-                      .then(data => { }
+                      .then(
+                        (data) => {}
                         // console.log('detail DONE')
                       )
                       .catch((err) => console.log(err));
                     CampaignCommitteeTreasurer.create(campaignComTr)
-                      .then(data => {
+                      .then((data) => {
                         // console.log('TREASURER DOONE')
                         // res.send({ message: "campaign committee Contact info created" })
                       })
                       .catch((err) => console.log(err));
                   })
-                  .catch((err) => console.log(err))
+                  .catch((err) => console.log(err));
               })
               .catch((err) => {
                 console.log(err);
@@ -228,27 +226,28 @@ exports.createCampaign = async (req, res) => {
             // break;
           }
         } else {
-          console.log('NO USER')
+          console.log('NO USER');
         }
       } catch (error) {
-        noUser.push('No User FOUND')
-        console.log(error)
+        noUser.push('No User FOUND');
+        console.log(error);
       }
       // CampaignInfo.findOne({UserId: user.})
       // .then((data) => {
     }
+    res.send({ message: 'Campaigns Created' });
   } catch (err) {
     console.log(err);
   }
-  console.log({ userLength: userArray.length })
-  console.log({ campaignInfo: campaignInfoArray.length })
-  console.log({ foundUserLengh: findUser.length })
+  console.log({ userLength: userArray.length });
+  console.log({ campaignInfo: campaignInfoArray.length });
+  console.log({ foundUserLengh: findUser.length });
   // console.log({ noUser: noUser.length })
   // console.log(noUser[0])
   // console.log(usersArray[0])
-  console.log(count)
+  console.log(count);
   // }
-}
+};
 //IF LOCAL
 //OFFICE LEVEL ID 3, OFFICE TYPE 89, PARTY ID 5, STATE ID 1, COUNTY ID 1
 exports.createCampaignExtra = async (req, res) => {
@@ -259,21 +258,21 @@ exports.createCampaignExtra = async (req, res) => {
     StateId: 1,
     CountyId: 0,
     CreatedOn: new Date(),
-    UpdatedOn: new Date()
-  }
+    UpdatedOn: new Date(),
+  };
 
-  console.log(campaignIdArray[0].dataValues.id)
+  console.log(campaignIdArray[0].dataValues.id);
   for (let i = 0; i < campaignIdArray.length; i++) {
     const campaignId = campaignIdArray[0].dataValues.id;
     // console.log(campaignId);
-    campaign.CampaignId = campaignId
+    campaign.CampaignId = campaignId;
     CampaignCommitteeContactInfo.create(campaign)
       .then()
       .catch((err) => console.log(err));
     CampaignCommitteeDetail.create(campaign)
       .then()
       .catch((err) => console.log(err));
-    console.log(campaign)
+    console.log(campaign);
     CampaignCommitteeTreasurer.create(campaign)
       .then()
       .catch((err) => console.log(err));
@@ -286,8 +285,8 @@ exports.createCampaignExtra = async (req, res) => {
 
 exports.findEmail = async (req, res) => {
   const records = req.file;
-  const emailsFound = []
-  const campaignCreated = []
+  const emailsFound = [];
+  const campaignCreated = [];
   if (!records) {
     return res.json({
       status: 'error',
@@ -305,27 +304,27 @@ exports.findEmail = async (req, res) => {
           where: {
             Email: record.Email.trim(),
           },
-        })
-        console.log({ id: user.id })
+        });
+        console.log({ id: user.id });
         if (!user.id) {
-          console.log('no id')
+          console.log('no id');
         }
         if (user) {
-          emailsFound.push(record)
+          emailsFound.push(record);
           const campaignInfo = {
             UserId: user.id,
             OfficeLevelId: 2,
             OfficeTypeId: record.OrganizationLevelID | 71,
-            // campaignID: 
+            // campaignID:
             PartyId: 5,
             StateId: findFipsNum(record.State) | 1,
             UpdatedOn: new Date(),
             CreatedOn: new Date(),
             IsVisible: true,
             IsApproved: true,
-            CountyId: 0
+            CountyId: 0,
           };
-          userArray.push(user.data)
+          userArray.push(user.data);
           // CampaignInfo.create(campaignInfo)
           //   .then((data) => { campaignCreated.push(data) })
           //   .catch(err => {
@@ -334,36 +333,33 @@ exports.findEmail = async (req, res) => {
           //   })
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-  console.log('LOOP DONE')
-  console.log({ emailsFound: emailsFound.length })
-  console.log(emailsFound[0])
-  console.log({ campaigns: campaignCreated.length })
-  res.send(emailsFound)
-}
+  console.log('LOOP DONE');
+  console.log({ emailsFound: emailsFound.length });
+  console.log(emailsFound[0]);
+  console.log({ campaigns: campaignCreated.length });
+  res.send(emailsFound);
+};
 
-exports.create = (req, res) => { };
+exports.create = (req, res) => {};
 
 // Retrieve all Users from the database.
-exports.findAll = (req, res) => { };
+exports.findAll = (req, res) => {};
 // Find a single User with an id
-exports.findOne = (req, res) => { };
+exports.findOne = (req, res) => {};
 // Update a User by the id in the request
-exports.update = (req, res) => { };
+exports.update = (req, res) => {};
 // Delete a User with the specified id in the request
-exports.delete = (req, res) => { };
+exports.delete = (req, res) => {};
 // Delete all Users from the database.
-exports.deleteAll = (req, res) => { };
+exports.deleteAll = (req, res) => {};
 // Find all published Users
-exports.findAllPublished = (req, res) => { };
-
-
-
+exports.findAllPublished = (req, res) => {};
 
 // bcrypt.genSalt(saltRounds, function (err, salt) {
 // returns salt
@@ -401,8 +397,3 @@ exports.findAllPublished = (req, res) => { };
 // };
 // logger(hash('Wisdom', generateSalt(12)))
 // const { salt, hashedpassword } = hash(password, generateSalt(12))
-
-
-
-
-

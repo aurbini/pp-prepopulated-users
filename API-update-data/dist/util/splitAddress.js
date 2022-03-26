@@ -20,7 +20,7 @@ const splitAddressMeshed = (address, state) => {
         address: '',
         zipcode: '',
         city: '',
-        state: findStateName_1.findStateName(state),
+        state: (0, findStateName_1.findStateName)(state),
     };
     if (!address.includes(','))
         return splitAddress;
@@ -42,7 +42,7 @@ const splitAddressMeshed = (address, state) => {
             splitAddress.address += element + ' ';
         }
     }
-    splitAddress.state = findStateName_1.findStateName(address.split(',')[1].trim().split(' ')[0]);
+    splitAddress.state = (0, findStateName_1.findStateName)(address.split(',')[1].trim().split(' ')[0]);
     splitAddress.zipcode = address.split(',')[1].trim().split(' ')[1];
     return splitAddress;
 };
@@ -56,13 +56,13 @@ const splitTwoCommaAddress = (address, state, fn) => {
         splitAddress.address = addressArray[0];
         splitAddress.zipcode = splitStateZip[1];
         splitAddress.city = addressArray[1];
-        splitAddress.state = findStateName_1.findStateName(state);
+        splitAddress.state = (0, findStateName_1.findStateName)(state);
     }
     else {
         splitAddress.address = addressArray[0] + addressArray[1];
         splitAddress.zipcode = splitStateZip[1];
         splitAddress.city = splitStateZip[0];
-        splitAddress.state = findStateName_1.findStateName(state);
+        splitAddress.state = (0, findStateName_1.findStateName)(state);
     }
     return splitAddress;
 };
@@ -81,7 +81,7 @@ const splitOneCommaAddress = (address, stateName, fn) => {
         address: addressArray[0],
         zipcode: '',
         city: '',
-        state: findStateName_1.findStateName(stateName),
+        state: (0, findStateName_1.findStateName)(stateName),
     };
     if (!address.includes(',')) {
         return splitAddress;
@@ -101,7 +101,7 @@ const splitOneCommaAddress = (address, stateName, fn) => {
     else {
         console.log('cristina');
         splitAddress.city = splitFirstPartOfAddress[splitFirstPartOfAddress.length - 1];
-        splitAddress.state = findStateName_1.findStateName(stateName);
+        splitAddress.state = (0, findStateName_1.findStateName)(stateName);
         splitAddress.zipcode = splitSecondPartOfAddress[1];
         splitAddress.address = splitFirstPartOfAddress.slice(0, splitFirstPartOfAddress.length).join();
     }
@@ -114,7 +114,7 @@ const splitThreeCommaAddress = (address, state) => {
         address: addressArray[0],
         zipcode: '',
         city: '',
-        state: findStateName_1.findStateName(state),
+        state: (0, findStateName_1.findStateName)(state),
     };
     if (!address.includes(',')) {
         return splitAddress;
@@ -122,7 +122,7 @@ const splitThreeCommaAddress = (address, state) => {
     splitAddress.address = addressArray[0];
     splitAddress.city = addressArray[1];
     splitAddress.zipcode = addressArray[3];
-    splitAddress.state = findStateName_1.findStateName(state);
+    splitAddress.state = (0, findStateName_1.findStateName)(state);
     return splitAddress;
 };
 exports.splitThreeCommaAddress = splitThreeCommaAddress;

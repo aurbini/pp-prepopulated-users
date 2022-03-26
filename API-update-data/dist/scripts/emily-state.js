@@ -16,11 +16,11 @@ class EmilyStRes extends baseFileReader_model_1.BaseFileReader {
         if (wsName == "Missouri")
             return;
         if (!!record.Name && record.Name.trim() !== 'No R incumbent') {
-            this.user.FirstName = splitMiddleName_1.splitMiddleName(record.Name).firstName;
-            this.user.LastName = splitMiddleName_1.splitMiddleName(record.Name).lastName;
+            this.user.FirstName = (0, splitMiddleName_1.splitMiddleName)(record.Name).firstName;
+            this.user.LastName = (0, splitMiddleName_1.splitMiddleName)(record.Name).lastName;
             if (wsName == 'Florida' && !!record['Campaign Treasurer']) {
-                this.treasurer.TrFirstName = splitMiddleName_1.splitMiddleName(record['Campaign Treasurer']).firstName;
-                this.treasurer.TrLastName = splitMiddleName_1.splitMiddleName(record['Campaign Treasurer']).lastName;
+                this.treasurer.TrFirstName = (0, splitMiddleName_1.splitMiddleName)(record['Campaign Treasurer']).firstName;
+                this.treasurer.TrLastName = (0, splitMiddleName_1.splitMiddleName)(record['Campaign Treasurer']).lastName;
                 this.user.Phone = record['Contact info'];
             }
             else if (wsName == 'Utah') {

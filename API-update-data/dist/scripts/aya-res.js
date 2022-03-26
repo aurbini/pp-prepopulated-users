@@ -11,20 +11,20 @@ class AyaRes extends baseFileReader_model_1.BaseFileReader {
     }
     filterRecords(record, wsName) {
         if (!!record['Name'] && !!record['Treasurer']) {
-            this.user.FirstName = splitName_1.splitName(record.Name).firstName;
-            this.user.LastName = splitName_1.splitName(record.Name).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(record.Name).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(record.Name).lastName;
             if (!!record.Contact) {
-                this.user.Email = splitPhoneEmail_1.splitPhoneEmail(record.Contact).email;
-                this.user.Phone = splitPhoneEmail_1.splitPhoneEmail(record.Contact).phone;
+                this.user.Email = (0, splitPhoneEmail_1.splitPhoneEmail)(record.Contact).email;
+                this.user.Phone = (0, splitPhoneEmail_1.splitPhoneEmail)(record.Contact).phone;
             }
-            this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
             if (!!record['Treasurer Contact'] &&
                 typeof record['Treasurer Contact'] != 'number' &&
                 wsName != 'Montana Upcoming Races') {
                 if (record['Treasurer Contact'].includes('@')) {
-                    this.treasurer.TrEmail = splitPhoneEmail_1.splitPhoneEmail(record['Treasurer Contact']).email;
-                    this.treasurer.TrPhone = splitPhoneEmail_1.splitPhoneEmail(record['Treasurer Contact']).phone;
+                    this.treasurer.TrEmail = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Treasurer Contact']).email;
+                    this.treasurer.TrPhone = (0, splitPhoneEmail_1.splitPhoneEmail)(record['Treasurer Contact']).phone;
                 }
                 else if (wsName !== 'Nebraska') {
                     this.treasurer.TrPhone == record['Treasurer Contact'];

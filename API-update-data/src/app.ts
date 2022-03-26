@@ -15,7 +15,7 @@ import { updatedDataNoEmail } from './scripts/finalized/updatedDataNoEmails';
 import { findStateName } from './util/findStateName';
 import { fullAddress } from './util/splitAddress';
 import { StateHouseRes } from './scripts/stateHouse-res';
-import { StandardRes } from './scripts/standard-res';
+import { candNewRes } from './scripts/candNew';
 
 // const ayaRes = new AyaRes(ProjectNames.AyaRes);
 // const ayaCalRes = new AyaCalRes(ProjectNames.AyaAndCal)
@@ -26,7 +26,7 @@ import { StandardRes } from './scripts/standard-res';
 // const emilyStRes = new EmilyStRes(ProjectNames.EmilyState);
 // const stateHouseRes = new StateHouseRes(ProjectNames.StateHouseRes);
 
-
+const candNew = new candNewRes(ProjectNames.CandNew);
 // const jacobRes = new JacobRes(ProjectNames.JacobRes);
 // const riRes = new RiRes(ProjectNames.RiRes);
 // const stateLeg = new StateLegRes(ProjectNames.StateLeg);

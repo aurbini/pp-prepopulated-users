@@ -22,7 +22,9 @@ class BaseFileReader {
     goThroughWorkSheets() {
         this.wsNames.forEach((wsName) => {
             const ws = this.workbook.Sheets[wsName];
-            if (this.fn == ProjectNames_enum_1.ProjectNames.EmilyState || this.fn == ProjectNames_enum_1.ProjectNames.StateLeg || this.fn == ProjectNames_enum_1.ProjectNames.RiRes) {
+            if (this.fn == ProjectNames_enum_1.ProjectNames.EmilyState ||
+                this.fn == ProjectNames_enum_1.ProjectNames.StateLeg ||
+                this.fn == ProjectNames_enum_1.ProjectNames.RiRes) {
                 this.range = 1;
             }
             if (this.fn == ProjectNames_enum_1.ProjectNames.JacobRes)
@@ -51,12 +53,12 @@ class BaseFileReader {
     }
     splitNames(name, nameType) {
         if (nameType == 'user') {
-            this.user.FirstName = splitName_1.splitName(name).firstName;
-            this.user.LastName = splitName_1.splitName(name).lastName;
+            this.user.FirstName = (0, splitName_1.splitName)(name).firstName;
+            this.user.LastName = (0, splitName_1.splitName)(name).lastName;
         }
         else if (nameType == 'treasurer') {
-            this.treasurer.TrFirstName = splitName_1.splitName(name).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(name).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(name).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(name).lastName;
         }
     }
     splitAddress(address, meshed, state, fn) {
@@ -64,20 +66,20 @@ class BaseFileReader {
         let fullState = state;
         let splitAddress = {};
         if (state.length == 2) {
-            fullState = findStateName_1.findStateName(state);
+            fullState = (0, findStateName_1.findStateName)(state);
         }
         if (meshed) {
-            return splitAddress_1.splitAddressMeshed(address, fullState);
+            return (0, splitAddress_1.splitAddressMeshed)(address, fullState);
         }
-        const commaCounter = splitAddress_1.countCommas(address);
+        const commaCounter = (0, splitAddress_1.countCommas)(address);
         if (commaCounter == 1) {
-            splitAddress = splitAddress_1.splitOneCommaAddress(address, state, fn);
+            splitAddress = (0, splitAddress_1.splitOneCommaAddress)(address, state, fn);
         }
         else if (commaCounter == 2) {
-            splitAddress = splitAddress_1.splitTwoCommaAddress(address, state, fn);
+            splitAddress = (0, splitAddress_1.splitTwoCommaAddress)(address, state, fn);
         }
         else if (commaCounter == 3) {
-            splitAddress = splitAddress_1.splitThreeCommaAddress(address, fullState);
+            splitAddress = (0, splitAddress_1.splitThreeCommaAddress)(address, fullState);
         }
         if (!!splitAddress.address) {
             this.treasurer.Address = splitAddress.address;

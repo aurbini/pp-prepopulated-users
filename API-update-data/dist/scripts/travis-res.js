@@ -18,11 +18,11 @@ class TravisRes extends baseFileReader_model_1.BaseFileReader {
             }
             record.Name = reverseName;
         }
-        this.user.FirstName = splitName_1.splitName(record.Name).firstName;
-        this.user.LastName = splitName_1.splitName(record.Name).lastName;
+        this.user.FirstName = (0, splitName_1.splitName)(record.Name).firstName;
+        this.user.LastName = (0, splitName_1.splitName)(record.Name).lastName;
         if (!!record.Treasurer) {
-            this.treasurer.TrFirstName = splitName_1.splitName(record.Treasurer).firstName;
-            this.treasurer.TrLastName = splitName_1.splitName(record.Treasurer).lastName;
+            this.treasurer.TrFirstName = (0, splitName_1.splitName)(record.Treasurer).firstName;
+            this.treasurer.TrLastName = (0, splitName_1.splitName)(record.Treasurer).lastName;
         }
         if (!!record['T email'])
             this.treasurer.TrEmail = record['T email'];
@@ -34,7 +34,7 @@ class TravisRes extends baseFileReader_model_1.BaseFileReader {
             this.user.Email = record.Email;
         if (!!record.Phone)
             this.user.Phone = record.Phone;
-        this.user.State = findStateName_1.findStateName(wsName);
+        this.user.State = (0, findStateName_1.findStateName)(wsName);
         if (record.Address) {
             this.splitAddress(record.Address, true, wsName, fn);
         }

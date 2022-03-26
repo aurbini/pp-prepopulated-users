@@ -5,6 +5,7 @@ var ProjectNames;
 (function (ProjectNames) {
     ProjectNames["AyaRes"] = "AyaRes";
     ProjectNames["AyaAndCal"] = "AyaAndCal";
+    ProjectNames["CandNew"] = "CandNew";
     ProjectNames["CalStateRes"] = "CalStateRes";
     ProjectNames["CalvinState"] = "CalvinState";
     ProjectNames["CrisTravis"] = "CrisTravis";
