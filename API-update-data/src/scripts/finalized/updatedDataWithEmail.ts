@@ -14,7 +14,6 @@ const ri = xlsx.readFile('../../../dist/RiRes-updated.xlsx');
 const stateLeg = xlsx.readFile('../../../dist/StateLeg-updated.xlsx');
 const coLeg = xlsx.readFile('../../../dist/StateLegCOGA-updated.xlsx');
 const travis = xlsx.readFile('../../../dist/TravisRes-updated.xlsx');
-const aiList = xlsx.readFile('../../../dist/AlList-updated.xlsx');
 const brianRob = xlsx.readFile('../../../dist/BrianRob-updated.xlsx');
 const Danyela = xlsx.readFile('../../../dist/Danyela-updated.xlsx');
 const frankie = xlsx.readFile('../../../dist/FrankieRes-updated.xlsx');
@@ -23,7 +22,6 @@ const candNew = xlsx.readFile('../../../dist/CandNew-updated.xlsx');
 
 var files = [
   candNew,
-  aiList,
   brianRob,
   Danyela,
   frankie,
